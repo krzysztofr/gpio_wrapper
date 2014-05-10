@@ -16,6 +16,6 @@ def mode(pin, mode):
     if mode not in ('in', 'out'):
         raise WrongMode('Mode should be either "in" or "out".')
 
-    system('gpio -g mode %d %d' % (pin, mode))
+    system('gpio -g mode %d %s' % (pin, mode))
 
     return True
