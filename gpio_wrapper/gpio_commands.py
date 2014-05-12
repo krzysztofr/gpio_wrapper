@@ -1,7 +1,9 @@
 # coding=utf-8
 
 from os import system
+from subprocess import check_output
 from errors import WrongMode, WrongWriteValue, WrongPinNumber
+
 
 
 def write(pin, value):
@@ -24,3 +26,10 @@ def mode(pin, set_mode):
     system('gpio -g mode %d %s' % (pin, set_mode))
 
     return True
+
+
+def read(pin):
+    if pin not in xrange(0, 26):
+        raise WrongPinNumber('GPIO pin number expected to be between 0 and 25.')
+
+    return int(check_output('gpio -g read %d' % pin, shell=True).strip())
