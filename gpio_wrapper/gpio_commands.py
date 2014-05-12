@@ -5,7 +5,6 @@ from subprocess import check_output
 from errors import WrongMode, WrongWriteValue, WrongPinNumber
 
 
-
 def write(pin, value):
     if value not in (0, 1):
         raise WrongWriteValue('Write value should be either 0 (low) or 1 (high).')
