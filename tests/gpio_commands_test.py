@@ -3,7 +3,7 @@
 import unittest
 import mock
 
-from gpio_wrapper.gpio_commands import write, mode
+from gpio_wrapper.gpio_commands import write, mode, read
 from gpio_wrapper.errors import WrongPinNumber, WrongMode, WrongWriteValue
 
 
@@ -47,3 +47,23 @@ class GPIOCommandsModeTestCase(unittest.TestCase):
     def test_write_wrong_mode(self):
         with self.assertRaises(WrongMode):
             mode(pin=1, set_mode='wrong_mode')
+
+
+class GPIOCommandsReadTestCase(unittest.TestCase):
+
+    @mock.patch('gpio_wrapper.gpio_commands.check_output')
+    def test_read_check_output(self, mock_check_output):
+        read(pin=1)
+        mock_check_output.assert_called_with('gpio -g read 1', shell=True)
+
+    @mock.patch('gpio_wrapper.gpio_commands.check_output')
+    def test_read_return_value(self, mock_check_output):
+        mock_check_output.return_value = "1\n"
+        result = read(pin=1)
+        self.assertEqual(result, 1, 'Result should be int(1).')
+
+    @mock.patch('gpio_wrapper.gpio_commands.check_output')
+    def test_read_wrong_pin(self, mock_check_output):
+        with self.assertRaises(WrongPinNumber):
+            read(pin=26)
+        self.assertFalse(mock_check_output.called, "check_output shouldn't be called.")
