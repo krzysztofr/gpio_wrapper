@@ -5,17 +5,18 @@ from errors import WrongMode, WrongWriteValue
 
 
 def write(pin, value):
-    if value not in (0,1):
+    if value not in (0, 1):
         raise WrongWriteValue('Write value should be either 0 (low) or 1 (high).')
 
     system('gpio -g write %d %d' % (pin, value))
 
     return True
 
-def mode(pin, mode):
-    if mode not in ('in', 'out'):
+
+def mode(pin, set_mode):
+    if set_mode not in ('in', 'out'):
         raise WrongMode('Mode should be either "in" or "out".')
 
-    system('gpio -g mode %d %s' % (pin, mode))
+    system('gpio -g mode %d %s' % (pin, set_mode))
 
     return True
