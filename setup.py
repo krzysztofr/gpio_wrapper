@@ -8,7 +8,7 @@ setup(
     name='gpio_wrapper',
     version=__version__,
     description='Simple wrapper for gpio.',
-    long_description=open('README.rst').read() + '\n\n' + open('HISTORY.rst').read(),
+    long_description=open('README.rst').read(),
     author='Krzysztof Rakowski',
     author_email='krzysztof@rakowski.pro',
     url='http://github.com/krzysztofr/gpio_wrapper',
