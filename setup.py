@@ -17,6 +17,7 @@ setup(
         'gpio_wrapper'
     ],
     scripts=['bin/gpio-init'],
+    test_requires=['mock'],
     #classifiers = [
     #    'TODO: Add trove classifiers (http://pypi.python.org/pypi?%3Aaction=list_classifiers)'
     #]
