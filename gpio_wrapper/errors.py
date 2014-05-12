@@ -7,3 +7,6 @@ class WrongWriteValue(Exception):
 
 class WrongMode(Exception):
     pass
+
+class WrongPinNumber(Exception):
+    pass
