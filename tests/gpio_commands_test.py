@@ -44,7 +44,7 @@ class GPIOCommandsModeTestCase(unittest.TestCase):
         with self.assertRaises(WrongPinNumber):
             mode(pin=26, set_mode='out')
 
-    def test_write_wrong_mode(self):
+    def test_set_wrong_mode(self):
         with self.assertRaises(WrongMode):
             mode(pin=1, set_mode='wrong_mode')
 
